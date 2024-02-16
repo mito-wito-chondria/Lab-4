@@ -1,17 +1,13 @@
 import random
 from flask import Flask
 
-app = Flask(__name__)
-@app.route("/")
-def home():
-    return 
-def roll_combat (roll: int, result:str):
-        i = [random.randit(1,20)]
-        if i == 1:
-            return result-'critical miss!'
-        if i == 20:
-            return result-'critical hit!'
-        
-        
+from routes import combat
+    
+def create_app():
+    app = Flask(__name__)
+    app.register_blueprint(combat)
+    return app
+
 if __name__ == "__main__":
+    app = create_app()
     app.run(debug=True)
